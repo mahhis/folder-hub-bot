@@ -1,10 +1,10 @@
 # Telegram bot based on [grammY](https://grammy.dev)
 
-telegram bot to share your own and receive other people's news feeds in telegram
+Telegram bot to share your own and receive other people's news feeds in telegram
 
 # Installation and local launch
 
-1. Clone this repo: `git clone https://github.com/Borodutch/telegram-bot-starter`
+1. Clone this repo: `git clone https://github.com/mahhis/nnf.git`
 2. Launch the [mongo database](https://www.mongodb.com/) locally
 3. Create `.env` with the environment variables listed below
 4. Run `yarn` in the root folder
