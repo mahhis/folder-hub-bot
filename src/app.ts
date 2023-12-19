@@ -5,6 +5,7 @@ import 'source-map-support/register'
 import { bot } from '@/helpers/bot'
 import { ignoreOld, sequentialize } from 'grammy-middlewares'
 import { run } from '@grammyjs/runner'
+import IcategoriesMenu from '@/menus/categories'
 import attachUser from '@/middlewares/attachUser'
 import configureI18n from '@/middlewares/configureI18n'
 import handleLanguage from '@/handlers/language'
@@ -12,7 +13,7 @@ import handleStart from '@/handlers/start'
 import i18n from '@/helpers/i18n'
 import instructionMenu from '@/menus/instruction'
 import languageMenu from '@/menus/language'
-import selectStep from '@/helpers/selectStep'
+import selectStep from '@/handlers/selectStep'
 import sendHelp from '@/handlers/help'
 import startMongo from '@/helpers/startMongo'
 
@@ -31,6 +32,7 @@ async function runApp() {
     // Menus
     .use(languageMenu)
     .use(instructionMenu)
+  //.use(IcategoriesMenu)
   // Commands
   bot.command('help', sendHelp)
   bot.command('start', handleStart)

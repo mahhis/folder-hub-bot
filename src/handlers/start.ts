@@ -6,12 +6,8 @@ import instructionMenu from '@/menus/instruction'
 import sendOptions from '@/helpers/sendOptions'
 
 export default async function handleStart(ctx: Context) {
-  await ctx.replyWithLocalization(
-    'send_news_feed',
-    sendOptions(ctx, instructionMenu)
-  )
-  if (ctx.dbuser.step === 'start') {
-    ctx.dbuser.step = 'waiting_for_url'
-    await ctx.dbuser.save()
-  }
+  await ctx.replyWithLocalization('send_news_feed', {
+    ...sendOptions(ctx),
+    reply_markup: instructionMenu,
+  })
 }

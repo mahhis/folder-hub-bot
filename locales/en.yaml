@@ -1,6 +1,19 @@
 name: English
 language: Please, select the language.
 language_selected: <b>This bot</b> now speaks English.
+intraduction: |
+ This bot allows you to share and receive folders with chats and channels from random people.
+ Make your own folder with cool channels and chats, send the link to me and get someone else's folder in return,
+  and if you don't like the folder you received, get another folder,
+  and if you don't like the folder you received, get another folder,
+  and if you don't like the folder you received, get another folder....
+
+ command to change /language
+ list of /commands
+yes: |
+ Yes
+no: |
+ No
 send_news_feed: |
  To get someone’s news feed, *share* the folder with your channels and chats where you get the news from.
 instruction: |
@@ -17,13 +30,24 @@ instruction: |
  9. Create an *invite link*.
  10. Copy it.
  11. Send the copied link here. Done!
-get_url: |
+broken_url: |
  Please provide a URL in the format [https://t.me/addlist/-1ctNawUyxwyYzk6](https://t.me/addlist/-1ctNawUyxwyYzk6)
 invalid_url: Invalid link
-send_url: This is someone's news feed ${data.url}
-get_new_news: Provide a new news feed 
-help: |
+gratitude: Thank you for sharing the folder, here's a snacks for you
+snack: ${data} 
+yes_no: Just say Yes or No
+send_url: |
+ Author @${data.author}
+
+ His folder ${data.url}
+give_new_folder: Give 
+end: |
+ You looked at all the folders that this bot received. 
+ New users will come soon and share new folders, check here often 😀
+confirmation: Can I save and show who is the author of this folder?
+select_category: What category does your folder fit into? You can select several.
+commands: |
   Here is the available command list
   /start - will tell you what to start
   /language - will change the bot language
-  /help - duplicates this message
+  /commands - duplicates this message

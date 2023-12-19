@@ -1,6 +1,9 @@
+import { ObjectId } from 'mongodb'
 import { getModelForClass, modelOptions, prop } from '@typegoose/typegoose'
 
-@modelOptions({ schemaOptions: { timestamps: true } })
+@modelOptions({
+  schemaOptions: { timestamps: true },
+})
 export class User {
   @prop({ required: true, index: true, unique: true })
   id!: number
@@ -10,9 +13,11 @@ export class User {
   language!: string
   @prop({ required: true, default: 'start' })
   step!: string
+  @prop({ type: () => ObjectId })
+  receivedUrlsID?: ObjectId[]
 }
 
-const UserModel = getModelForClass(User)
+export const UserModel = getModelForClass(User)
 
 export function findOrCreateUser(id: number, username: string | undefined) {
   return UserModel.findOneAndUpdate(

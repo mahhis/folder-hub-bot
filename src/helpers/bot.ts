@@ -7,7 +7,18 @@ export const bot = new Bot<Context>(env.TOKEN, {
   ContextConstructor: Context,
 })
 
-export function getI18nKeyboard(lng: string) {
-  const keyboard = new Keyboard().text(i18n.t(lng, 'get_new_news')).row()
-  return keyboard
+export function getI18nKeyboard(lng: string, type: string) {
+  let keyboard: Keyboard
+
+  switch (type) {
+    case 'Give':
+      keyboard = new Keyboard().text(i18n.t(lng, 'give_new_folder'))
+      return keyboard
+    case 'YesNo':
+      keyboard = new Keyboard()
+        .text(i18n.t(lng, 'yes'))
+        .row()
+        .text(i18n.t(lng, 'no'))
+      return keyboard
+  }
 }

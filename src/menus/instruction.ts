@@ -13,10 +13,10 @@ const getInstruction = async (ctx: Context) => {
     reply_markup: undefined,
   })
 
-  await ctx.replyWithLocalization(
-    'instruction',
-    sendOptions(ctx, getI18nKeyboard(ctx.dbuser.language))
-  )
+  await ctx.replyWithLocalization('instruction', {
+    ...sendOptions(ctx),
+    reply_markup: getI18nKeyboard(ctx.dbuser.language, 'Give'),
+  })
 }
 
 const instructionMenu = new Menu<Context>('instruction')

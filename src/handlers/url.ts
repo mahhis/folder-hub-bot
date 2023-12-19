@@ -1,67 +1,34 @@
-import { TemplateData } from '@grammyjs/i18n'
-import { Url, UrlModel, findOrCreateUrl } from '@/models/Url'
-import { findOrCreateUser } from '@/models/User'
+import { findOrCreateUrl, isURL } from '@/models/Url'
+import { getCategoriesMenu } from '@/menus/categories'
 import Context from '@/models/Context'
-import instructionMenu from '@/menus/instruction'
 import sendOptions from '@/helpers/sendOptions'
 
-export async function getUrl(ctx: Context) {
-  const url = ctx.msg!.text
-  if (isURL(url!)) {
-    await findOrCreateUrl(url!)
-    ctx.dbuser.step = 'alredy_shared'
-    await ctx.dbuser.save()
-   // await getRandomUrl(ctx)
-  } else {
-    // URL is not valid or user is not in the expected step
-    await ctx.replyWithLocalization(
-      'send_news_feed',
-      sendOptions(ctx, instructionMenu)
-    )
-  }
+export default async function handleUrl(ctx: Context) {
+  const url = await findOrCreateUrl(
+    ctx.msg!.text!,
+    ctx.dbuser,
+    ctx.msg!.message_id
+  )
+  ctx.dbuser.step = 'select_category'
+  await ctx.dbuser.save()
+
+  const categoriesMenu = await getCategoriesMenu(url)
+
+  console.log(1234589)
+
+  await ctx.replyWithLocalization('select_category', {
+    ...sendOptions(ctx),
+    reply_markup: categoriesMenu,
+  })
 }
 
-export async function getRandomUrl() {
-  //try {
+// export default async function handleUrl(ctx: Context) {
+//   await findOrCreateUrl(ctx.msg!.text!, ctx.dbuser)
+//   ctx.dbuser.step = 'confirmation'
+//   await ctx.dbuser.save()
 
-  const size = await UrlModel.countDocuments()
-  console.log(size)
-  const random = Math.floor(Math.random() * size)
-  console.log(random)
-
-  const t = await UrlModel.findOne().skip(random)
-  console.log(t!.value)
-
-  return t!.value
-
-  // await UrlModel.count().exec(function (err, count) {
-  //   const random = Math.floor(Math.random() * count)
-
-  //  UrlModel.findOne()
-  //     .skip(random)
-  //     .exec(function (err, result) {
-  //       //console.log(result?.value)
-  //       return result?.value
-  //     })
-  // })
-
-  // if (randomUrl) {
-  //   return await ctx.replyWithLocalization(
-  //     'send_url',
-  //     sendOptions(ctx, undefined, { url: randomUrl[0].value })
-  //   )
-  // } else {
-  //   console.log(123)
-  // }
-
-  //return { randomUrl: randomUrl[0] } // The result is an array, so we return the first element
-  // } catch (error) {
-  //   console.error('Error while fetching a random URL:', error)
-  //   return null
-  // }
-}
-
-export function isURL(text: string) {
-  const urlPattern = /(https?:\/\/)?t\.me\/addlist\/[-\w]+/
-  return urlPattern.test(text)
-}
+//   await ctx.replyWithLocalization('confirmation', {
+//     ...sendOptions(ctx),
+//     reply_markup: getI18nKeyboard(ctx.dbuser.language, 'YesNo'),
+//   })
+// }
