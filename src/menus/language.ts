@@ -4,6 +4,9 @@ import { load } from 'js-yaml'
 import { readFileSync, readdirSync } from 'fs'
 import { resolve } from 'path'
 import Context from '@/models/Context'
+import { createCategoriesMenu } from './categories'
+import { getI18nKeyboard } from '@/helpers/bot'
+import sendOptions from '@/helpers/sendOptions'
 
 interface YamlWithName {
   name: string
@@ -21,10 +24,13 @@ const setLanguage = (languageCode: string) => async (ctx: Context) => {
   ctx.dbuser.language = languageCode
   await ctx.dbuser.save()
   ctx.i18n.locale(languageCode)
-  return ctx.editMessageText(ctx.i18n.t('language_selected'), {
-    parse_mode: 'HTML',
-    reply_markup: undefined,
+  await ctx.deleteMessage()
+  await ctx.replyWithLocalization('language_selected', {
+    ...sendOptions(ctx),
+    reply_markup: getI18nKeyboard(ctx.dbuser.language, 'NextChange'),
   })
+
+
 }
 
 const languageMenu = new Menu<Context>('language')

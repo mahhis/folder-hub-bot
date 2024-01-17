@@ -1,9 +1,5 @@
 import { Menu } from '@grammyjs/menu'
-import { cwd } from 'process'
 import { getI18nKeyboard } from '@/helpers/bot'
-import { load } from 'js-yaml'
-import { readFileSync, readdirSync } from 'fs'
-import { resolve } from 'path'
 import Context from '@/models/Context'
 import sendOptions from '@/helpers/sendOptions'
 
@@ -15,7 +11,8 @@ const getInstruction = async (ctx: Context) => {
 
   await ctx.replyWithLocalization('instruction', {
     ...sendOptions(ctx),
-    reply_markup: getI18nKeyboard(ctx.dbuser.language, 'Give'),
+    reply_markup: getI18nKeyboard(ctx.dbuser.language, 'Next'),
+    parse_mode: 'HTML'
   })
 }
 

@@ -11,14 +11,21 @@ export function getI18nKeyboard(lng: string, type: string) {
   let keyboard: Keyboard
 
   switch (type) {
-    case 'Give':
-      keyboard = new Keyboard().text(i18n.t(lng, 'give_new_folder'))
+    case 'NextChange':
+      keyboard = new Keyboard()
+        .text(i18n.t(lng, 'change'))
+        .text(i18n.t(lng, 'next'))
+        .resized().persistent();
       return keyboard
     case 'YesNo':
       keyboard = new Keyboard()
-        .text(i18n.t(lng, 'yes'))
-        .row()
         .text(i18n.t(lng, 'no'))
+        .text(i18n.t(lng, 'yes')).resized().oneTime()
       return keyboard
+    case 'StreamSelection':
+      keyboard = new Keyboard()
+        .text(i18n.t(lng, 'random'))
+        .text(i18n.t(lng, 'specific')).resized().oneTime();
+      return keyboard  
   }
 }

@@ -3,9 +3,14 @@ import 'reflect-metadata'
 import 'source-map-support/register'
 
 import { bot } from '@/helpers/bot'
+//import { buttonPressHandler, getCategoriesMenu, getCategoriesMenu1 } from '@/menus/categories'
 import { ignoreOld, sequentialize } from 'grammy-middlewares'
 import { run } from '@grammyjs/runner'
-import IcategoriesMenu from '@/menus/categories'
+//import IcategoriesMenu from '@/menus/categories'
+import {
+  getCategoriesMenu,
+  saveCategoriesForUserStream,
+} from '@/menus/categories'
 import attachUser from '@/middlewares/attachUser'
 import configureI18n from '@/middlewares/configureI18n'
 import handleLanguage from '@/handlers/language'
@@ -32,13 +37,39 @@ async function runApp() {
     // Menus
     .use(languageMenu)
     .use(instructionMenu)
-  //.use(IcategoriesMenu)
   // Commands
-  bot.command('help', sendHelp)
+  bot.command('commands', sendHelp)
   bot.command('start', handleStart)
   bot.command('language', handleLanguage)
 
   bot.on('message', selectStep)
+  bot.callbackQuery(
+    [
+      'Politics',
+      'Travel',
+      'Finance',
+      'Startups',
+      'Business',
+      'Education',
+      'Science',
+      'Technology',
+      'Health',
+      'Culture',
+      'Sports',
+      'Celebrities',
+      'Food',
+      'Music',
+      'Gaming',
+      '❗️Finish❗️',
+    ],
+    async (ctx) => {
+      if (ctx.dbuser.step === 'select_category_url') {
+        await getCategoriesMenu(ctx)
+      } else if (ctx.dbuser.step === 'stream_selection') {
+        await saveCategoriesForUserStream(ctx)
+      }
+    }
+  )
   // Errors
   bot.catch(console.error)
   // Start bot

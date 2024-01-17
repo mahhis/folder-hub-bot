@@ -13,8 +13,12 @@ export class User {
   language!: string
   @prop({ required: true, default: 'start' })
   step!: string
+  @prop({ required: true, default: 3 })
+  trialCount!: number
   @prop({ type: () => ObjectId })
   receivedUrlsID?: ObjectId[]
+  @prop({ required: true, default: [], type: () => [String] })
+  currentCategorySelection!: string[]
 }
 
 export const UserModel = getModelForClass(User)

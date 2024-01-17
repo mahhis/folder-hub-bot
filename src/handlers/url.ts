@@ -1,34 +1,21 @@
 import { findOrCreateUrl, isURL } from '@/models/Url'
-import { getCategoriesMenu } from '@/menus/categories'
 import Context from '@/models/Context'
+import  { createCategoriesMenu } from '@/menus/categories'
 import sendOptions from '@/helpers/sendOptions'
+import { type Message } from "@grammyjs/types"
 
-export default async function handleUrl(ctx: Context) {
-  const url = await findOrCreateUrl(
-    ctx.msg!.text!,
+export default async function handleUrl(ctx: Context, message: Message) {
+  await findOrCreateUrl(
+    message.text!,
     ctx.dbuser,
-    ctx.msg!.message_id
   )
-  ctx.dbuser.step = 'select_category'
+  ctx.dbuser.step = 'select_category_url'
   await ctx.dbuser.save()
 
-  const categoriesMenu = await getCategoriesMenu(url)
+  const categoriesMenu = await createCategoriesMenu(ctx)
 
-  console.log(1234589)
-
-  await ctx.replyWithLocalization('select_category', {
+  await ctx.replyWithLocalization('select_category_url', {
     ...sendOptions(ctx),
     reply_markup: categoriesMenu,
   })
 }
-
-// export default async function handleUrl(ctx: Context) {
-//   await findOrCreateUrl(ctx.msg!.text!, ctx.dbuser)
-//   ctx.dbuser.step = 'confirmation'
-//   await ctx.dbuser.save()
-
-//   await ctx.replyWithLocalization('confirmation', {
-//     ...sendOptions(ctx),
-//     reply_markup: getI18nKeyboard(ctx.dbuser.language, 'YesNo'),
-//   })
-// }

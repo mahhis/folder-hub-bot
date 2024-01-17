@@ -1,11 +1,10 @@
-import { Keyboard } from 'grammy'
 import { ObjectId } from 'mongodb'
-import { Url, UrlModel, findLastAddedUrl } from '@/models/Url'
-import { findOrCreateUser } from '@/models/User'
+import { findLastAddedUrl } from '@/models/Url'
 import { getI18nKeyboard } from '@/helpers/bot'
 import Context from '@/models/Context'
-import instructionMenu from '@/menus/instruction'
 import sendOptions from '@/helpers/sendOptions'
+import { type Message } from "@grammyjs/types"
+
 
 const snacks = [
   '\u{1F354}', //Hamburger:
@@ -20,10 +19,10 @@ const snacks = [
   '\u{1F351}', //Peach
 ]
 
-export default async function handleConfirmation(ctx: Context) {
+export default async function handleConfirmation(ctx: Context, message: Message) {
   const lastUrl = await findLastAddedUrl(ctx.dbuser)
-  const lastUrlID: ObjectId = lastUrl?._id
-  if (ctx.msg!.text === 'No') {
+  const lastUrlID: ObjectId = lastUrl!._id
+  if (message.text === 'No') {
     lastUrl!.user = undefined
     await lastUrl!.save()
   }
@@ -32,10 +31,11 @@ export default async function handleConfirmation(ctx: Context) {
   const snack = getRandomEmoji()
   await ctx.replyWithLocalization('snack', {
     ...sendOptions(ctx, snack),
-    reply_markup: getI18nKeyboard(ctx.dbuser.language, 'Give'),
+    reply_markup: getI18nKeyboard(ctx.dbuser.language, 'NextChange'),
   })
 
   ctx.dbuser.step = 'alredy_shared'
+  ctx.dbuser.trialCount = -4
   ctx.dbuser.receivedUrlsID?.push(lastUrlID)
   await ctx.dbuser.save()
 }

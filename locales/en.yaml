@@ -10,24 +10,37 @@ intraduction: |
 
  command to change /language
  list of /commands
-yes: |
- Yes
-no: |
- No
-send_news_feed: |
- To get someone’s news feed, *share* the folder with your channels and chats where you get the news from.
-instruction: |
- *Instructions:*
+yes: Yes
+no: No
+random: Random
+next: Next folder➡️
+change: Change categories🔄
+specific: Specific 
+before_categories: | 
+ Before this you had: ${data.categories}
+random_categories: random categories 
+start: |
+ To get a folder of a certain category, select the
+ <b>Change categories🔄</b> 
+ button and indicate the ones you are interested in, then when you click on the <b>Next folder➡️</b> button you will receive folders with the categories you selected.
+ If you immediately click the 
+ <b>Next folder➡️</b>
+ button, you will receive a folder from a random category.
 
- 1. Go to *Settings*.
- 2. Select *Chats*.
- 3. Click on *Create a new folder*.
- 4. Add the necessary *chats* and *channels* that you read every day.
- 5. Click *Done*.
- 6. Come up with a *name* for your news feed (folder name).
+ command to change /language
+ list of /commands
+instruction: |
+ <b>Instructions:</b>
+
+ 1. Go to <b>Settings</b>.
+ 2. Select <b>Chats</b>.
+ 3. Click on <b>Create a new folder</b>.
+ 4. Add the necessary <b>chats</b> and <b>channels</b> that you read every day.
+ 5. Click <b>Done</b>.
+ 6. Come up with a <b>name</b> for your news feed (folder name).
  7. Create the folder.
- 8. In the *folders* section, choose the one you just created.
- 9. Create an *invite link*.
+ 8. In the <b>folders</b> section, choose the one you just created.
+ 9. Create an <b>invite link</b>.
  10. Copy it.
  11. Send the copied link here. Done!
 broken_url: |
@@ -37,17 +50,51 @@ gratitude: Thank you for sharing the folder, here's a snacks for you
 snack: ${data} 
 yes_no: Just say Yes or No
 send_url: |
- Author @${data.author}
+ Categories: ${data.categories}
+
+ Author ${data.author}
 
  His folder ${data.url}
 give_new_folder: Give 
-end: |
- You looked at all the folders that this bot received. 
- New users will come soon and share new folders, check here often 😀
 confirmation: Can I save and show who is the author of this folder?
-select_category: What category does your folder fit into? You can select several.
+select_category_url: What categories does your folder fit into? You can select several.
+select_category_stream: |
+ Select the categories of folders you want to receive.
+ 
+ If you do not select any category, you will be offered folders with random categories.
 commands: |
   Here is the available command list
   /start - will tell you what to start
   /language - will change the bot language
   /commands - duplicates this message
+categories: |
+  Politics
+  Travel
+  Finance
+  Startups
+  Business
+  Education
+  Science
+  Technology
+  Health
+  Culture
+  Sports
+  Celebrities
+  Food
+  Music
+  Gaming
+  ❗️Finish❗️
+choice_made: |
+ Now you will receive folders from the categories: ${data.categories}
+choice_made_random: You will now receive folders with random categories
+recorded: 🗳
+trial_end: | 
+ You have reached your folder receiving limit.
+ To get unlimited access to all folders from any category, simply create your own folder with channels and chats, send me a link and indicate the categories corresponding to it.
+ By sharing folders you help develop the project. Thank you
+end: |
+ You have looked through all the folders that correspond to the categories you have chosen, you can click on the "Change categories🔄" button and select new ones or leave them random.
+ 
+ If you already selected a random selection, then you looked through all the folders that the bot had.
+ 
+ New users will come soon and share new folders, check back here from time to time 😀 

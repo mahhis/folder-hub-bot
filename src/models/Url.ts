@@ -13,9 +13,7 @@ export class Url {
   user?: Ref<User>
   @prop({ required: true })
   url!: string
-  @prop({ required: true })
-  msgID!: number
-  @prop({ required: true, default: [] })
+  @prop({ required: true, default: [], type: () => [String] })
   categories!: string[]
 }
 
@@ -32,19 +30,21 @@ export function isURL(text: string): boolean {
 }
 
 export async function getNewUrl(user: User) {
-  const unreceivedUrls = await UrlModel.find(
-    {
-      _id: { $nin: user.receivedUrlsID },
-    },
-    { _id: 1 }
-  )
+  const query: any = {
+    _id: { $nin: user.receivedUrlsID },
+  }
 
+  if (user.currentCategorySelection.length > 0) {
+    query.categories = { $in: user.currentCategorySelection }
+  }
+
+  const unreceivedUrls = await UrlModel.find(query, { _id: 1 })
   return unreceivedUrls[0]
 }
 
-export function findOrCreateUrl(url: string, user: User, msgID: number) {
+export function findOrCreateUrl(url: string, user: User) {
   return UrlModel.findOneAndUpdate(
-    { url, user, msgID },
+    { url, user },
     {},
     {
       upsert: true,

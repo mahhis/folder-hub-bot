@@ -1,3 +1,4 @@
+import * as Url from '@/models/Url'
 import * as User from '@/models/User'
 import { Context as BaseContext } from 'grammy'
 import { DocumentType } from '@typegoose/typegoose'
