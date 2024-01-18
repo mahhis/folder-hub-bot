@@ -5,8 +5,8 @@
   "main": "dist/app.js",
   "license": "MIT",
   "scripts": {
-    "distribute": "yarn build && node dist/server.js",
-    "start": "tsc-watch --skipLibCheck --onSuccess 'node dist/server.js'",
+    "distribute": "yarn build && node dist/app.js",
+    "start": "tsc-watch --skipLibCheck --onSuccess 'node dist/app.js'",
     "build": "tsc --skipLibCheck",
     "test": "yarn jest --forceExit --runInBand",
     "pretty": "prettier --check src",
