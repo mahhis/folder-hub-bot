@@ -253,10 +253,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^16.11.12":
-  version: 16.18.68
-  resolution: "@types/node@npm:16.18.68"
-  checksum: 4c7e65c78bc3893ff89a0761bf18f412080486ef31a8b62d7bc1b91551c8a4218dc4bf41443450318914758c58976ac19e969fd7dce019741f085547e83d1fb7
+"@types/node@npm:^20.11.0":
+  version: 20.11.5
+  resolution: "@types/node@npm:20.11.5"
+  dependencies:
+    undici-types: "npm:~5.26.4"
+  checksum: 6d18cec852f5cfbed3ec42b5c01c026e7a3f9da540d6e3d6738d4cee9979fb308cf27b6df7ba40a6553e7bc82e678f0ef53ba6e6ad52e5b86bd97b7783c2a42c
   languageName: node
   linkType: hard
 
@@ -1430,6 +1432,40 @@ __metadata:
   languageName: node
   linkType: hard
 
+"folder hub@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "folder hub@workspace:."
+  dependencies:
+    "@grammyjs/i18n": "npm:^0.5.0"
+    "@grammyjs/menu": "npm:^1.0.4"
+    "@grammyjs/runner": "npm:^1.0.3"
+    "@typegoose/typegoose": "npm:^12.0.0"
+    "@types/js-yaml": "npm:^4.0.5"
+    "@types/node": "npm:^20.11.0"
+    "@types/node-telegram-bot-api": "npm:^0.63.1"
+    "@typescript-eslint/eslint-plugin": "npm:^5.6.0"
+    "@typescript-eslint/parser": "npm:^5.6.0"
+    dotenv: "npm:^10.0.0"
+    envalid: "npm:^7.2.2"
+    eslint: "npm:^8.4.1"
+    eslint-config-prettier: "npm:^8.3.0"
+    eslint-plugin-import: "npm:^2.25.3"
+    eslint-plugin-no-relative-import-paths: "npm:^1.0.8"
+    eslint-plugin-node: "npm:^11.1.0"
+    eslint-plugin-prettier: "npm:^4.0.0"
+    eslint-plugin-sort-imports-es6-autofix: "npm:^0.6.0"
+    grammy: "npm:^1.19.2"
+    grammy-middlewares: "npm:^1.0.11"
+    module-alias: "npm:^2.2.2"
+    mongoose: "npm:^8.0.3"
+    node-telegram-bot-api: "npm:^0.64.0"
+    prettier: "npm:^2.5.1"
+    source-map-support: "npm:^0.5.21"
+    tsc-watch: "npm:^4.5.0"
+    typescript: "npm:^4.5.2"
+  languageName: unknown
+  linkType: soft
+
 "for-each@npm:^0.3.3":
   version: 0.3.3
   resolution: "for-each@npm:0.3.3"
@@ -2273,40 +2309,6 @@ __metadata:
   checksum: f5f9a7974bfb28a91afafa254b197f0f22c684d4a1731763dda960d2c8e375b36c7d690e0d9dc8fba774c537af14a7e979129bca23d88d052fbeb9466955e447
   languageName: node
   linkType: hard
-
-"new news feed@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "new news feed@workspace:."
-  dependencies:
-    "@grammyjs/i18n": "npm:^0.5.0"
-    "@grammyjs/menu": "npm:^1.0.4"
-    "@grammyjs/runner": "npm:^1.0.3"
-    "@typegoose/typegoose": "npm:^12.0.0"
-    "@types/js-yaml": "npm:^4.0.5"
-    "@types/node": "npm:^16.11.12"
-    "@types/node-telegram-bot-api": "npm:^0.63.1"
-    "@typescript-eslint/eslint-plugin": "npm:^5.6.0"
-    "@typescript-eslint/parser": "npm:^5.6.0"
-    dotenv: "npm:^10.0.0"
-    envalid: "npm:^7.2.2"
-    eslint: "npm:^8.4.1"
-    eslint-config-prettier: "npm:^8.3.0"
-    eslint-plugin-import: "npm:^2.25.3"
-    eslint-plugin-no-relative-import-paths: "npm:^1.0.8"
-    eslint-plugin-node: "npm:^11.1.0"
-    eslint-plugin-prettier: "npm:^4.0.0"
-    eslint-plugin-sort-imports-es6-autofix: "npm:^0.6.0"
-    grammy: "npm:^1.19.2"
-    grammy-middlewares: "npm:^1.0.11"
-    module-alias: "npm:^2.2.2"
-    mongoose: "npm:^8.0.3"
-    node-telegram-bot-api: "npm:^0.64.0"
-    prettier: "npm:^2.5.1"
-    source-map-support: "npm:^0.5.21"
-    tsc-watch: "npm:^4.5.0"
-    typescript: "npm:^4.5.2"
-  languageName: unknown
-  linkType: soft
 
 "node-cleanup@npm:^2.1.2":
   version: 2.1.2

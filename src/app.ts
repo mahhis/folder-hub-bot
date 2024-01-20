@@ -18,6 +18,7 @@ import handleStart from '@/handlers/start'
 import i18n from '@/helpers/i18n'
 import instructionMenu from '@/menus/instruction'
 import languageMenu from '@/menus/language'
+import runMongo from '@/helpers/startMongo'
 import selectStep from '@/handlers/selectStep'
 import sendHelp from '@/handlers/help'
 import startMongo from '@/helpers/startMongo'
@@ -25,7 +26,7 @@ import startMongo from '@/helpers/startMongo'
 async function runApp() {
   console.log('Starting app...')
   // Mongo
-  await startMongo()
+  await runMongo()
   console.log('Mongo connected')
   bot
     // Middlewares

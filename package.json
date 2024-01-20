@@ -1,5 +1,5 @@
 {
-  "name": "new news feed",
+  "name": "folder hub",
   "version": "1.0.0",
   "description": "telegram bot to share your news feed and receive other people's in return",
   "main": "dist/app.js",
@@ -28,7 +28,7 @@
   "devDependencies": {
     "@typegoose/typegoose": "^12.0.0",
     "@types/js-yaml": "^4.0.5",
-    "@types/node": "^16.11.12",
+    "@types/node": "^20.11.0",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
     "eslint": "^8.4.1",

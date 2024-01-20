@@ -1,8 +1,6 @@
-import { connect } from 'mongoose'
+import * as mongoose from 'mongoose'
 import env from '@/helpers/env'
 
-function startMongo() {
-  return connect(env.MONGO)
+export default function runMongo(mongoUrl = env.MONGO) {
+  return mongoose.connect(mongoUrl)
 }
-
-export default startMongo
