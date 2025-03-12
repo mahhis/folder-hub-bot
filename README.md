@@ -27,8 +27,7 @@ To install and run the bot, follow these steps:
 
 3. Launch the [mongo database](https://www.mongodb.com/) locally
 
-4. Create a `.env` file and add the necessary environment variables.
-   Also, please, consider looking at `.env.example`.
+4. Create a `.env` file and add the necessary environment variables. Example at `.env.example`.
 
 5. Install dependencies using Yarn:
 
