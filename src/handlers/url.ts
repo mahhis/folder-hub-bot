@@ -1,14 +1,11 @@
+import { type Message } from '@grammyjs/types'
+import { createCategoriesMenu } from '@/menus/categories'
 import { findOrCreateUrl, isURL } from '@/models/Url'
 import Context from '@/models/Context'
-import  { createCategoriesMenu } from '@/menus/categories'
 import sendOptions from '@/helpers/sendOptions'
-import { type Message } from "@grammyjs/types"
 
 export default async function handleUrl(ctx: Context, message: Message) {
-  await findOrCreateUrl(
-    message.text!,
-    ctx.dbuser,
-  )
+  await findOrCreateUrl(message.text!, ctx.dbuser)
   ctx.dbuser.step = 'select_category_url'
   await ctx.dbuser.save()
 

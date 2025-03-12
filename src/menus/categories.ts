@@ -1,11 +1,11 @@
 import { InlineKeyboard } from 'grammy'
 import { findLastAddedUrl } from '@/models/Url'
 import { getI18nKeyboard } from '@/helpers/bot'
+import { isTrial, sendFolder } from '@/handlers/next'
 import Context from '@/models/Context'
 import i18n from '@/helpers/i18n'
-import sendOptions from '@/helpers/sendOptions'
-import { isTrial, sendFolder } from '@/handlers/next'
 import instructionMenu from '@/menus/instruction'
+import sendOptions from '@/helpers/sendOptions'
 
 function getI18nCategoryNames(lng: string) {
   const categoriesString = i18n.t(lng, 'categories')
@@ -91,11 +91,10 @@ export async function saveCategoriesForUserStream(ctx: Context) {
   const user = ctx.dbuser
 
   if (selectedCategory == '❗️Finish❗️') {
-
-    let userCategories = ctx.dbuser.currentCategorySelection.join(', ')
+    const userCategories = ctx.dbuser.currentCategorySelection.join(', ')
 
     await ctx.deleteMessage()
-    if(userCategories.length == 0){
+    if (userCategories.length == 0) {
       await ctx.replyWithLocalization('choice_made_random', {
         ...sendOptions(ctx),
         reply_markup: undefined,
@@ -106,14 +105,12 @@ export async function saveCategoriesForUserStream(ctx: Context) {
         reply_markup: undefined,
       })
     }
-    
-    if(!isTrial(ctx)){
-      await ctx.replyWithLocalization(
-          'trial_end', {
-          ...sendOptions(ctx),
-          reply_markup: instructionMenu 
-          }
-          )
+
+    if (!isTrial(ctx)) {
+      await ctx.replyWithLocalization('trial_end', {
+        ...sendOptions(ctx),
+        reply_markup: instructionMenu,
+      })
     } else {
       ctx.dbuser.trialCount = ctx.dbuser.trialCount - 1
       await ctx.dbuser.save()
@@ -122,7 +119,10 @@ export async function saveCategoriesForUserStream(ctx: Context) {
     return
   }
 
-  if (selectedCategory && !user!.currentCategorySelection.includes(selectedCategory!)) {
+  if (
+    selectedCategory &&
+    !user!.currentCategorySelection.includes(selectedCategory!)
+  ) {
     user!.currentCategorySelection.push(selectedCategory)
     await user.save()
   } else if (user!.currentCategorySelection.includes(selectedCategory!)) {
@@ -148,4 +148,3 @@ export async function saveCategoriesForUserStream(ctx: Context) {
     reply_markup: categoriesMenu,
   })
 }
-

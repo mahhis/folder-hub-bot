@@ -1,16 +1,13 @@
+import { type Message } from '@grammyjs/types'
 import { findOrCreateUrl, isURL, isURLToFolder } from '@/models/Url'
-import Context from '@/models/Context'
-import handleConfirmation from '@/handlers/confiramtion'
 import { handleNext } from '@/handlers/next'
-import handleUrl from '@/handlers/url'
-import sendOptions from '@/helpers/sendOptions'
+import Context from '@/models/Context'
 import handleCategorySelection from '@/handlers/streamSelection'
-import i18n from '@/helpers/i18n'
-import { type Message } from "@grammyjs/types"
 import handleChangeCategories from '@/handlers/changeStreamSelection'
-
-
-const steps = ['confirmation']
+import handleConfirmation from '@/handlers/confiramtion'
+import handleUrl from '@/handlers/url'
+import i18n from '@/helpers/i18n'
+import sendOptions from '@/helpers/sendOptions'
 
 export default async function selectStep(ctx: Context) {
   const message = ctx.msg!
@@ -49,11 +46,15 @@ function isChangeCategories(ctx: Context, message: Message) {
 }
 
 function isYesOrNo(ctx: Context, message: Message) {
-  return message.text == i18n.t(ctx.dbuser.language, 'yes') ||
-   message.text == i18n.t(ctx.dbuser.language, 'no')
+  return (
+    message.text == i18n.t(ctx.dbuser.language, 'yes') ||
+    message.text == i18n.t(ctx.dbuser.language, 'no')
+  )
 }
 
 function isSpecificRandom(ctx: Context, message: Message) {
-  return message.text == i18n.t(ctx.dbuser.language, 'random') ||
-   message.text == i18n.t(ctx.dbuser.language, 'specific')
+  return (
+    message.text == i18n.t(ctx.dbuser.language, 'random') ||
+    message.text == i18n.t(ctx.dbuser.language, 'specific')
+  )
 }

@@ -5,14 +5,14 @@ import sendOptions from '@/helpers/sendOptions'
 
 const getInstruction = async (ctx: Context) => {
   await ctx.editMessageText(ctx.i18n.t('send_news_feed'), {
-    parse_mode: 'Markdown',
+    parse_mode: 'HTML',
     reply_markup: undefined,
   })
 
   await ctx.replyWithLocalization('instruction', {
     ...sendOptions(ctx),
     reply_markup: getI18nKeyboard(ctx.dbuser.language, 'Next'),
-    parse_mode: 'HTML'
+    parse_mode: 'HTML',
   })
 }
 

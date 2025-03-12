@@ -253,12 +253,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.11.0":
-  version: 20.11.5
-  resolution: "@types/node@npm:20.11.5"
-  dependencies:
-    undici-types: "npm:~5.26.4"
-  checksum: 6d18cec852f5cfbed3ec42b5c01c026e7a3f9da540d6e3d6738d4cee9979fb308cf27b6df7ba40a6553e7bc82e678f0ef53ba6e6ad52e5b86bd97b7783c2a42c
+"@types/node@npm:^16.11.12":
+  version: 16.18.126
+  resolution: "@types/node@npm:16.18.126"
+  checksum: 5c137eb141d33de32b16ff26047ff6d449432b58d0d25f7cced2040c97727d81fe1099a7581eb336d14a6840f5b09e363bdd43d7a6995e8e81eb47aa51e413fc
   languageName: node
   linkType: hard
 
@@ -1441,7 +1439,7 @@ __metadata:
     "@grammyjs/runner": "npm:^1.0.3"
     "@typegoose/typegoose": "npm:^12.0.0"
     "@types/js-yaml": "npm:^4.0.5"
-    "@types/node": "npm:^20.11.0"
+    "@types/node": "npm:^16.11.12"
     "@types/node-telegram-bot-api": "npm:^0.63.1"
     "@typescript-eslint/eslint-plugin": "npm:^5.6.0"
     "@typescript-eslint/parser": "npm:^5.6.0"

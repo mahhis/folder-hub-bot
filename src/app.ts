@@ -21,7 +21,6 @@ import languageMenu from '@/menus/language'
 import runMongo from '@/helpers/startMongo'
 import selectStep from '@/handlers/selectStep'
 import sendHelp from '@/handlers/help'
-import startMongo from '@/helpers/startMongo'
 
 async function runApp() {
   console.log('Starting app...')
@@ -44,6 +43,7 @@ async function runApp() {
   bot.command('language', handleLanguage)
 
   bot.on('message', selectStep)
+
   bot.callbackQuery(
     [
       'Politics',

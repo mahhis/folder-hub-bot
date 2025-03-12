@@ -1,10 +1,9 @@
+import { type Message } from '@grammyjs/types'
 import { ObjectId } from 'mongodb'
 import { findLastAddedUrl } from '@/models/Url'
 import { getI18nKeyboard } from '@/helpers/bot'
 import Context from '@/models/Context'
 import sendOptions from '@/helpers/sendOptions'
-import { type Message } from "@grammyjs/types"
-
 
 const snacks = [
   '\u{1F354}', //Hamburger:
@@ -19,7 +18,10 @@ const snacks = [
   '\u{1F351}', //Peach
 ]
 
-export default async function handleConfirmation(ctx: Context, message: Message) {
+export default async function handleConfirmation(
+  ctx: Context,
+  message: Message
+) {
   const lastUrl = await findLastAddedUrl(ctx.dbuser)
   const lastUrlID: ObjectId = lastUrl!._id
   if (message.text === 'No') {

@@ -9,7 +9,6 @@ export const bot = new Bot<Context>(env.TOKEN, {
 
 export function getI18nKeyboard(lng: string, type: string) {
   let keyboard: Keyboard
-
   switch (type) {
     case 'NextChange':
       keyboard = new Keyboard()
@@ -26,6 +25,6 @@ export function getI18nKeyboard(lng: string, type: string) {
       keyboard = new Keyboard()
         .text(i18n.t(lng, 'random'))
         .text(i18n.t(lng, 'specific')).resized().oneTime();
-      return keyboard  
+      return keyboard
   }
 }

@@ -8,14 +8,11 @@ import instructionMenu from '@/menus/instruction'
 import sendOptions from '@/helpers/sendOptions'
 
 export async function handleNext(ctx: Context) {
-
-  if(!isTrial(ctx)){
-    await ctx.replyWithLocalization(
-        'trial_end', {
-        ...sendOptions(ctx),
-        reply_markup: instructionMenu 
-        }
-        )
+  if (!isTrial(ctx)) {
+    await ctx.replyWithLocalization('trial_end', {
+      ...sendOptions(ctx),
+      reply_markup: instructionMenu,
+    })
   } else {
     ctx.dbuser.trialCount = ctx.dbuser.trialCount - 1
     await ctx.dbuser.save()
@@ -32,22 +29,26 @@ export async function sendFolder(ctx: Context) {
       const urlID: ObjectId = url!._id
       ctx.dbuser.receivedUrlsID?.push(urlID)
       await ctx.dbuser.save()
-      await ctx.replyWithLocalization(
-        'send_url', {
-        ...sendOptions(ctx, { author: '@' + user!.username, categories: url!.categories.join(', '), url: url!.url }),
-        reply_markup: getI18nKeyboard(ctx.dbuser.language, 'NextChange')
-        }
-      )
+      await ctx.replyWithLocalization('send_url', {
+        ...sendOptions(ctx, {
+          author: '@' + user!.username,
+          categories: url!.categories.join(', '),
+          url: url!.url,
+        }),
+        reply_markup: getI18nKeyboard(ctx.dbuser.language, 'NextChange'),
+      })
     } else {
       const urlID: ObjectId = url!._id
       ctx.dbuser.receivedUrlsID?.push(urlID)
       await ctx.dbuser.save()
-      await ctx.replyWithLocalization(
-        'send_url', {
-        ...sendOptions(ctx, { author: 'remained anonymous', categories: url!.categories.join(', '), url: url!.url }),
-        reply_markup: getI18nKeyboard(ctx.dbuser.language, 'NextChange')
-        }
-      )
+      await ctx.replyWithLocalization('send_url', {
+        ...sendOptions(ctx, {
+          author: 'remained anonymous',
+          categories: url!.categories.join(', '),
+          url: url!.url,
+        }),
+        reply_markup: getI18nKeyboard(ctx.dbuser.language, 'NextChange'),
+      })
     }
   } else {
     await ctx.dbuser.save()
@@ -55,10 +56,6 @@ export async function sendFolder(ctx: Context) {
   }
 }
 
-export  function isTrial(ctx: Context) {
+export function isTrial(ctx: Context) {
   return ctx.dbuser.trialCount != 0
-  }
-
-
-
-
+}

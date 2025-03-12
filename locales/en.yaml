@@ -14,21 +14,22 @@ yes: Yes
 no: No
 random: Random
 next: Next folder➡️
-change: Change categories🔄
+change: Categories🔄
 specific: Specific 
 before_categories: | 
  Before this you had: ${data.categories}
 random_categories: random categories 
 start: |
- To get a folder of a certain category, select the
- <b>Change categories🔄</b> 
- button and indicate the ones you are interested in, then when you click on the <b>Next folder➡️</b> button you will receive folders with the categories you selected.
- If you immediately click the 
- <b>Next folder➡️</b>
- button, you will receive a folder from a random category.
+  To get folders of a certain category, press the button:
 
- command to change /language
- list of /commands
+  <b>Categories🔄</b>
+
+  To get folders from random categories, press the button immediately:
+
+  <b>Next folder➡️</b>
+
+  change /language
+  list /commands
 instruction: |
  <b>Instructions:</b>
 
