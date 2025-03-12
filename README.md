@@ -1,4 +1,4 @@
-# Money Transfer Bot
+# Folder Hub Bot
 
 ## Description
 
