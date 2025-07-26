@@ -51,7 +51,11 @@ export async function sendFolder(ctx: Context) {
       })
     }
   } else {
+    if (isTrial(ctx)) {
+      ctx.dbuser.trialCount = ctx.dbuser.trialCount + 1
+    }
     await ctx.dbuser.save()
+
     await ctx.replyWithLocalization('end', sendOptions(ctx))
   }
 }
