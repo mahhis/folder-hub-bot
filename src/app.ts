@@ -1,6 +1,8 @@
+import * as mongoose from 'mongoose'
 import 'module-alias/register'
 import 'reflect-metadata'
 import 'source-map-support/register'
+import { activity, createLifecycle } from '@/helpers/lifecycle'
 
 import { bot } from '@/helpers/bot'
 //import { buttonPressHandler, getCategoriesMenu, getCategoriesMenu1 } from '@/menus/categories'
@@ -22,7 +24,16 @@ import runMongo from '@/helpers/startMongo'
 import selectStep from '@/handlers/selectStep'
 import sendHelp from '@/handlers/help'
 
+const lifecycle = createLifecycle({
+  ready: () => mongoose.connection.readyState === 1,
+  close: async () => {
+    await mongoose.connection.close()
+  },
+})
+
 async function runApp() {
+  await lifecycle.open()
+  bot.use(activity.middleware())
   console.log('Starting app...')
   // Mongo
   await runMongo()
@@ -75,7 +86,7 @@ async function runApp() {
   bot.catch(console.error)
   // Start bot
   await bot.init()
-  run(bot)
+  lifecycle.launch(() => run(bot))
   console.info(`Bot ${bot.botInfo.username} is up and running`)
 }
 
